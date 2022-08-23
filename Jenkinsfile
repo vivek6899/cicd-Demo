@@ -31,6 +31,7 @@ node {
         remote.user = 'meet'
         remote.password = 'meet'
         remote.allowAnyHosts = true
+    }
 
 }
 
