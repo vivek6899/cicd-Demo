@@ -31,6 +31,10 @@ node {
         remote.user = 'meet'
         remote.password = 'meet'
         remote.allowAnyHosts = true
+
+        stage('Put deployment.yaml into k8smaster') {
+            sshPut remote: remote, from: 'deployment.yaml', into: '.'
+        } 
     }
 
     stage('Put deployment.yaml into k8smaster') {
