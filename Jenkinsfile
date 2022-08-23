@@ -22,11 +22,19 @@ node {
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
             app.push("${env.BUILD_NUMBER}")
         }
-
-        stage('reteg image into deployment.yaml') {
-                sh "sed -i 's/meets0ni/webapp:*/${env.BUILD_NUMBER}/g' deployment.yaml"
-            } 
     }    
+
+    stage('Trigger ManifestUpdate') {
+            echo "triggering updatemanifestjob"
+            build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+    }
+
+    stage('Update image teg') {
+
+        sh "cat deployment.yaml"
+        sh "sed -i 's+meets0ni/test.*+meets0ni/test:${DOCKERTAG}+g' deployment.yaml"
+        sh "cat deployment.yaml"
+    }
 
     stage("SSH Into k8s Server") {
         def remote = [:]
@@ -40,7 +48,7 @@ node {
             sshPut remote: remote, from: 'deployment.yaml', into: '.'
         } 
 
-        stage('Deploy spring boot') {
+        stage('Deploy simple web') {
           sshCommand remote: remote, command: "kubectl apply -f deployment.yaml"
         }
     } 
