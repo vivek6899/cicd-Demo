@@ -33,5 +33,9 @@ node {
         remote.allowAnyHosts = true
     }
 
+    stage('Put deployment.yaml into k8smaster') {
+            sshPut remote: remote, from: 'deployment.yaml', into: '.'
+    } 
+
 }
 
