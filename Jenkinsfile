@@ -22,7 +22,11 @@ node {
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
             app.push("${env.BUILD_NUMBER}")
         }
-    }
+
+    stage('reteg image into deployment.yaml') {
+            sh 'sed -i 's/meets0ni/webapp:*/$BUILD_NUMBER/g' deployment.yaml '
+        } 
+    }    
 
     stage("SSH Into k8s Server") {
         def remote = [:]
