@@ -31,8 +31,9 @@ node {
     stage('Update image teg') {
 
         sh "cat deployment.yaml"
-        sh "sed -i 's+meets0ni/test.*+meets0ni/test:${DOCKERTAG}+g' deployment.yaml"
-        sh "cat deployment.yaml"
+        // sh "sed -i 's+meets0ni/test.*+meets0ni/test:${DOCKERTAG}+g' deployment.yaml"
+        // sh "sed -i 's+meets0ni/test.*+meets0ni/test:${DOCKERTAG}+g' deployment.yaml"
+        // sh "cat deployment.yaml"
     }
 
     stage("SSH Into k8s Server") {
