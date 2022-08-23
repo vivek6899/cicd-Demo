@@ -7,6 +7,7 @@ node {
 
     stage('Build image'){
         app = docker.build("meets0ni/webapp")
+        sh 'docker images'
     }
 
     stage('Test image') {
