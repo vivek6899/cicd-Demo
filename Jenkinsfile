@@ -7,7 +7,7 @@ node {
     }
 
     stage('Build image'){
-        sh 'echo "Building the image"'
+//        sh 'echo "Building the image"'
         app = docker.build("meets0ni/webapp")
         sh 'docker images'
     }
@@ -15,14 +15,14 @@ node {
     stage('Test image') {
   
         app.inside {
-            sh 'echo "Testing the image"'
+  //          sh 'echo "Testing the image"'
             sh 'echo "Tests passed"'
         }
     }
 
     stage('Push image') {
 
-        sh 'echo "Pushing the image"'
+    //    sh 'echo "Pushing the image"'
         
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
             app.push("${env.BUILD_NUMBER}")
