@@ -46,7 +46,7 @@ node {
         sh 'echo "connecting via ssh to master node"'
         def remote = [:]
         remote.name = 'gitK8s'
-        remote.host = '13.126.32.204'
+        remote.host = '20.249.84.250'
         remote.user = 'meet'
         remote.password = 'meet'
         remote.allowAnyHosts = true
