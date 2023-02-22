@@ -41,24 +41,24 @@ node {
     //     sh "cat deployment.yaml"
     // }
 
-    stage("SSH Into k8s Server") {
+//     stage("SSH Into k8s Server") {
 
-        sh 'echo "connecting via ssh to master node"'
-        def remote = [:]
-        remote.name = 'gitK8s'
-        remote.host = '20.204.116.27'
-        remote.user = 'meet'
-        remote.password = 'meet'
-        remote.allowAnyHosts = true
+//         sh 'echo "connecting via ssh to master node"'
+//         def remote = [:]
+//         remote.name = 'gitK8s'
+//         remote.host = '20.204.116.27'
+//         remote.user = 'meet'
+//         remote.password = 'meet'
+//         remote.allowAnyHosts = true
 
-        stage('Put deployment.yaml into k8smaster') {
-            sshPut remote: remote, from: 'deployment.yaml', into: '.'
-        } 
+//         stage('Put deployment.yaml into k8smaster') {
+//             sshPut remote: remote, from: 'deployment.yaml', into: '.'
+//         } 
 
-        stage('Deploy simple web') {
-          sshCommand remote: remote, command: "kubectl apply -f deployment.yaml"
-        }
-    } 
+//         stage('Deploy simple web') {
+//           sshCommand remote: remote, command: "kubectl apply -f deployment.yaml"
+//         }
+//     } 
 
 }
 
