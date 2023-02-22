@@ -1,5 +1,5 @@
-node {
-    def app
+pipeline {
+    agent any
 
     stage('clone repository'){
         sh 'echo "Cloning the repository"'
