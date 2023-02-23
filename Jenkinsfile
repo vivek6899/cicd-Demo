@@ -8,7 +8,7 @@ node {
 
     stage('Build image'){
 //        sh 'echo "Building the image"'
-        app = docker.build("vivek6899/webapp")
+        app = docker.build("vivek6899/jenkins-agent")
         sh 'docker images'
     }
 
